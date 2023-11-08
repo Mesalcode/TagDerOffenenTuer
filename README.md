@@ -12,6 +12,4 @@ Ein Doktor der Informatik kriegt das schon hin.
 
 ## Ausführung
 
-```bash
-yarn start
-```
+Das auch.
