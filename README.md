@@ -13,3 +13,7 @@ Ein Doktor der Informatik kriegt das schon hin.
 ## Ausführung
 
 Das auch.
+
+## Konfiguration
+
+Siehe config.json.
