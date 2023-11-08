@@ -1,0 +1,45 @@
+{% extends "shared/base.html" %}
+{% block extrahead %}
+<link rel="stylesheet" href="/static/css/chooseVideo.css">
+<script src="/static/js/choose-video.js"></script>
+{% endblock %}
+{% block content %}
+<button id="return-button" onclick="closeFrame()" type="button" class="btn btn-danger btn-lg btn-block mt-3">
+    Zurück zum Video
+</button>
+<div class="content">
+    {% if not videos|length %}
+    <h3 class="display-8 lh-1 mb-4 mt-4" style="color: black; text-align: center;">
+        Keine Videos vorhanden.
+    </h3>
+    {% endif %}
+    {% for video in videos %}
+    <section id="video-{{ video.fileName }}" class="bg-light">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+                <div class="col-sm-8 col-md-6">
+                    <div class="px-6 px-sm-10">
+                        <img src="/static/userVideos/thumbnails/{{video.thumbnailFileName}}" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 pb-4">
+                    <h3 class="display-8 lh-1 mb-4 mt-4" style="color: black;">
+                        {{ video.title }}
+                    </h3>
+                    <p class="lead fw-normal text-muted mb-5 mb-lg-0">
+                        Länge: {{ video.lengthStr }}
+                    </p>
+                    <button onclick="window.top.document.location='/learn?vid={{video.fileName}}'" type="button"
+                        class="btn btn-primary btn-lg btn-block mt-3">
+                        Jetzt ansehen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="bg-dark" style="margin: 0px; color: black; height: 5px;">
+</div>
+
+{% endfor %}
+
+{% endblock %}

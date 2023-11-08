@@ -1,0 +1,31 @@
+{% extends "shared/base.html" %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="/static/css/login.css">
+	    
+    <script src="/static/js/login.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="global-container">
+	<div class="card login-form">
+	<div class="card-body">
+		<h3 class="card-title text-center">Bei <a class="text-gradient">{{ PRODUCT_NAME }}</a> als Administrator einloggen</h3>
+		<div class="card-text">
+			<form onsubmit="onFormSubmission(); return false;" method="post">
+				<div class="form-group">
+					<label for="inputPassword">Passwort</label>
+					<input type="password" name="password" required minlength="{{PASSWORD_MIN_LENGTH }}" maxlength="{{ PASSWORD_MAX_LENGTH }}" class="form-control form-control-sm" id="inputPassword">
+				</div>
+				<button id="spinner" class="btn btn-secondary" type="button" style="display: none" disabled>
+					<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+					Überprüfe Daten..
+				</button>
+				<button type="submit" class="btn btn-primary btn-block">Einloggen</button>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}

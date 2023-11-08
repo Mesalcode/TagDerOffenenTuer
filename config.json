@@ -1,0 +1,10 @@
+{
+    "PRODUCT_NAME": "Tag der offenen Tür",
+    "ADMIN_NAME": "Alexander Mertens",
+    "ADMIN_ADDRESS": "Nachtigallenweg 3",
+    "ADMIN_CITY": "51789 Lindlar",
+    "ADMIN_EMAIL": "alexandermertens06@gmail.com",
+    "ADMIN_PASSWORD": "Schewe123",
+    "IS_DEV": false,
+    "PORT_SERVER": 80
+}

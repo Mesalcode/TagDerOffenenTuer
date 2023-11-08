@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% block head %}
+<head>
+    <title>
+        {{ PRODUCT_NAME }} - {{ page.title }}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="/static/js/third-party/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script defer src="/static/js/third-party/bootstrap.min.js"></script>
+    <script defer src="/static/js/third-party/bootbox.min.js"></script>
+
+    {% if shouldShowCookieBanner %}
+        <script defer src="/static/js/cookie-banner.js"></script>
+    {% endif %}
+
+    <link rel="stylesheet" href="/static/css/third-party/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/mainstyle.css" />
+    <link rel="stylesheet" href="/static/css/global.css" />
+    <link rel="stylesheet" href="/static/css/third-party/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/static/css/third-party/font-kanit.css" />
+
+    {% block extrahead %}{% endblock %}
+</head>
+{% endblock %}
+
+<body>
+    {% block header %}
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand text-primary" href="/">
+            {{ PRODUCT_NAME }} {% if IS_DEV %} (Entwicklungsmodus) {% endif %}
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                {% for currentPage in pages %}
+                    {% if not currentPage.hideFromNavbar %}
+                        {% if currentPage.url == page.url %}
+                            <a class="nav-item nav-link active" href="{{ currentPage.url }}">
+                                {{ currentPage.title }}
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{{ currentPage.url }}">{{ currentPage.title }}</a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% if shouldShowCookieBanner %}
+    <div class="d-flex justify-content-center container mt-5 cookie-banner">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="d-flex flex-row justify-content-between align-items-center card cookie p-3">
+                    <div class="d-flex flex-row align-items-center">
+                        <img src="/static/img/cookie.png" width="40">
+                        <div class="ml-2 mr-2">
+                            <span>{{ PRODUCT_NAME }} verwendet ausschließlich funktionale Cookies, die für die
+                                Verwendung dringend benötigt werden.<br></span>
+                            <a class="learn-more text-primary" href="/privacy-policy">Mehr erfahren
+                            <i class="fa fa-angle-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="onCookieAcceptClicked()" class="btn btn-dark">Verstanden.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% block footer %}
+    <footer class="bg-black text-center py-5">
+        <div class="container px-5">
+            <div class="text-white-50 small">
+                <div class="mb-2">&copy; {{ ADMIN_NAME }} seit 2023. Alle Rechte vorbehalten.</div>
+                <div class="mb-2">Es handelt sich um Software in der Prototyp-Phase, für Ausfälle oder technische Fehler
+                    wird keine Haftung übernommen.</div>
+                <a href="/imprint">Impressum</a>
+                <span class="mx-1">&middot;</span>
+                <a href="/privacy-policy">Datenschutzerklärung</a>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+</body>

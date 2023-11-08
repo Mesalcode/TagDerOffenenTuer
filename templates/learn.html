@@ -1,0 +1,141 @@
+{% extends "shared/base.html" %}
+{% block extrahead %}
+    <link href='https://fonts.googleapis.com/css?family=Bubblegum Sans' rel='stylesheet'>
+<link href="/static/css/learn.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+<iframe id="video-chooser" style="display: none" src="/chooseVideo"></iframe>
+
+    <div class="sky">
+  <div class="cloud variant-1"></div>
+  <div class="cloud variant-3"></div>
+  <div class="cloud variant-4"></div>
+  <div class="cloud variant-5"></div>
+</div>
+
+
+<div class="snowflakes">
+  <div class="snowflake">
+    <img src="https://64.media.tumblr.com/9c2986f3c6031bc7cf19e5a45404a35b/6defb6d468e541ab-9d/s500x750/6208e13f7d26dadd705d1c6c80177bd50c1113f2.gifv" 
+         width="60" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake2">
+    <img src="https://64.media.tumblr.com/a549c5d3c069c7af2d12e54276a17ba4/6defb6d468e541ab-bf/s500x750/3491af688c172f0d80a400478480404d265aa2ff.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake">
+    <img src="https://64.media.tumblr.com/909296f0e90554cd6ca5eb5c6d410b5d/6defb6d468e541ab-08/s500x750/609579ee362ff3a43051322ea392723d29daa57c.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake2">
+    <img src="https://64.media.tumblr.com/9c2986f3c6031bc7cf19e5a45404a35b/6defb6d468e541ab-9d/s500x750/6208e13f7d26dadd705d1c6c80177bd50c1113f2.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake">
+    <img src="https://64.media.tumblr.com/a549c5d3c069c7af2d12e54276a17ba4/6defb6d468e541ab-bf/s500x750/3491af688c172f0d80a400478480404d265aa2ff.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake2">
+    <img src="https://64.media.tumblr.com/909296f0e90554cd6ca5eb5c6d410b5d/6defb6d468e541ab-08/s500x750/609579ee362ff3a43051322ea392723d29daa57c.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake">
+    <img src="https://64.media.tumblr.com/9c2986f3c6031bc7cf19e5a45404a35b/6defb6d468e541ab-9d/s500x750/6208e13f7d26dadd705d1c6c80177bd50c1113f2.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake2">
+    <img src="https://64.media.tumblr.com/a549c5d3c069c7af2d12e54276a17ba4/6defb6d468e541ab-bf/s500x750/3491af688c172f0d80a400478480404d265aa2ff.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake">
+    <img src="https://64.media.tumblr.com/909296f0e90554cd6ca5eb5c6d410b5d/6defb6d468e541ab-08/s500x750/609579ee362ff3a43051322ea392723d29daa57c.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake2">
+    <img src="https://64.media.tumblr.com/9c2986f3c6031bc7cf19e5a45404a35b/6defb6d468e541ab-9d/s500x750/6208e13f7d26dadd705d1c6c80177bd50c1113f2.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+  <div class="snowflake">
+    <img src="https://64.media.tumblr.com/a549c5d3c069c7af2d12e54276a17ba4/6defb6d468e541ab-bf/s500x750/3491af688c172f0d80a400478480404d265aa2ff.gifv" 
+         width="50" 
+         alt="155b4588f223ce388f2542198570256b.gif" />
+    </div>
+</div>
+<div class="background">
+  <div class="canvas-container">
+    <canvas id="fieldCanvas" style="width: 100%; height: 100%"> </canvas>
+  </div>
+</div>
+
+<header class="masthead">
+    <div class="container px-4" style="margin-top: 0px">
+       
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-12"> <!-- Increase the column size to col-lg-8 for a larger video -->
+      <div class="embed-responsive embed-responsive-16by9 border border-dark rounded" style="border-width: thick !important;"">
+        <video id="videoplayer" style="background-color: black;">
+        <source id="videoSource" src="/static/userVideos/{{video.fileName}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</script>
+<script src="/static/js/flowers.js"></script>
+<script src="/static/js/video-player.js"></script>
+<script src="/static/js/learn.js"></script>
+
+<style>
+  #queen{
+    transition: 0.5s;
+    animation: queenmove 10s infinite;                
+  } 
+   
+  @keyframes queenmove{
+      0% {
+        transform: translateX(60px);
+      }
+      49% {
+        transform: translateX(165px);
+      }
+      50% {
+        transform: translateX(165px);
+      }
+      100% {
+        transform: translateX(60px);
+      }
+  }
+  </style>
+  
+<div class="container mt-2">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-12"> <!-- Increase the column size to col-lg-8 for a larger video -->
+      <h1 class="mr-md-auto font-weight-normal mt-2">{{video.title}}</h1>
+<button onclick="playVideo()" type="button" style="color: black; border-width: thick !important;" class="btn btn-success btn-sb border border-dark rounded"><span class="bi bi-play-circle mr-2"></span>Abspielen</button>
+ <button onclick="pauseVideo()" type="button" style="color: black; border-width: thick !important;" class="btn btn-danger btn-sb border border-dark rounded"><span class="bi bi-pause-circle mr-2"></span>Pause</button>
+  <button onclick="resetVideo()" type="button" style="border-width: thick !important;" class="btn btn-primary btn-sb border border-dark rounded"><span class="bi bi-skip-start-circle mr-2"></span>Zurück zum Anfang</button>     
+  <button onclick="showVideoChooser()" type="button" style="border-width: thick !important; background-color: #007bff!important;" class="btn btn-info btn-sb border border-dark rounded float-right"><span class="bi bi-list mr-2"></span>Video auswählen</button>     
+       
+</div>
+  </div>
+</div>
+
+    </div>
+    </header>
+  
+{% endblock %}

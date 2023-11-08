@@ -1,0 +1,95 @@
+{% extends "shared/base.html" %}
+{% block extrahead %}
+<script src="/static/js/configure.js" defer></script>
+<link rel="stylesheet" href="/static/css/configure.css">
+{% endblock %}
+{% block content %}
+<section class="bg-light px-5" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="container px-5">
+        <div class="row gx-5 px-5 align-items-center justify-content-center justify-content-lg-between">
+            <button onclick="logOut()" type="button" class="btn btn-danger btn-lg btn-block mt-3">
+                Abmelden und Konfiguration verlassesn
+            </button>
+        </div>
+    </div>
+</section>
+<hr class="bg-dark" style="margin: 0px; color: black; height: 5px;">
+<section class="bg-light px-5" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="container px-5">
+        <ul id="sortable" class="list-group px-5">
+            {% for video in videos %}
+            <li data-id="{{video.fileName}}" id="order-{{video.fileName}}">
+                <span class="bi fs-5 bi-list mr-2 handle"></span>
+                <span class="ui-state-default fs-5">{{video.title}}</span>
+            </li>
+
+            {% endfor %}
+          </ul>
+        
+          <button onclick="saveOrder()" type="button" class="btn btn-primary btn-lg btn-block mt-3">
+            Reihenfolge speichern
+        </button>
+    </div>
+</section>
+
+<hr class="bg-dark" style="margin: 0px; color: black; height: 5px;">
+<section class="bg-light" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="container px-5">
+        <div class="row gx-5 px-5 align-items-center justify-content-center justify-content-lg-between">
+            <form id="add-video-form" action="/add-video" enctype="multipart/form-data" method="post">
+                <div class="form-group px-5">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Video hochladen</label>
+                        <input required class="form-control" type="file" id="formFile" name="video" accept="video/*">
+                      </div>
+                    <div class="mb-3 row">
+                        <label for="title" class="col-sm-2 col-form-label">Videotitel</label>
+                        <div class="col-sm-10">
+                          <input required type="text" minlength="1" class="form-control" placeholder="z. B. Das wundersame Abenteuer der Honigbiene" id="title" name="title">
+                        </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">
+                        Hinzufügen
+                    </button>
+                    <br>
+                    <button id="spinner" class="btn btn-secondary" type="button" style="display: none" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Überprüfe Daten..
+                    </button>
+                    <div id="message-box" class="alert" role="alert" style="display: none;">
+                      </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% for video in videos %}
+<hr id="divider-{{ video.fileName }}" class="bg-dark" style="margin: 0px; color: black; height: 5px;">
+<section id="video-{{ video.fileName }}" class="bg-light">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+            <div class="col-sm-8 col-md-6">
+                <div class="px-6 px-sm-10">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video controls class="embed-responsive-item">
+                                <source src="/static/userVideos/{{video.fileName}}">
+                            </video>
+                          </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 pb-4">
+                <h3 class="display-8 lh-1 mb-4 mt-4">
+                    {{ video.title }}
+                </h3>
+                <p class="lead fw-normal text-muted mb-5 mb-lg-0">
+                    Länge: {{ video.lengthStr }}
+                </p>
+                <button onclick="deleteVideo('{{video.fileName}}');" type="button" class="btn btn-danger btn-lg btn-block mt-3">
+                    Löschen
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+
+{% endblock %}
